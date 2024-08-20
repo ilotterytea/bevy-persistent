@@ -265,6 +265,13 @@ impl<R: Resource + Serialize + DeserializeOwned> Persistent<R> {
         self.persist()
     }
 
+    /// Sets the resource.
+    ///
+    /// Changes are **not** synchronized with the underlying storage.
+    pub fn set_without_persisting(&mut self, new_resource: R) {
+        self.resource = Some(new_resource);
+    }
+
     /// Updates the resource.
     ///
     /// Changes are synchronized with the underlying storage immediately.
